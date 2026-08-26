@@ -1,0 +1,9 @@
+{
+  "name": "Pedidos",
+  "short_name": "Pedidos",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#eef2ef",
+  "theme_color": "#1f4d3a",
+  "description": "Aplicación para preparar hojas de pedido de material."
+}
