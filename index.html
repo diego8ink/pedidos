@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Hoja de pedido</h1>
+
+<div id="datosPedido">
+    <label for="nombrePedido">Pedido:</label>
+    <input type="text" id="nombrePedido" placeholder="Nombre o referencia">
+
+    <label for="fechaPedido">Fecha:</label>
+    <input type="date" id="fechaPedido">
+</div>
+
+    <div id="categorias">
+        <button onclick="cambiarCategoria('Agujas')">Agujas</button>
+        <button onclick="cambiarCategoria('Consumibles')">Consumibles</button>
+        <button onclick="cambiarCategoria('Otros')">Otros</button>
+    </div>
+
+    <h2 id="tituloCategoria">Agujas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Cantidad</th>
+                <th>Precio unidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaMateriales">
+        </tbody>
+    </table>
+
+    <div id="botonesPedido">
+    <button onclick="añadirMaterial()">+ Añadir material</button>
+    <button onclick="limpiarCantidades()">Limpiar cantidades</button>
+    <button onclick="limpiarPedido()">Limpiar pedido</button>
+</div>
+<button id="botonGenerar" onclick="generarPedido()">🧾 Generar pedido</button>
+
+<div id="pedidoLimpio" style="display: none;">
+    <div id="contenidoPedido"></div>
+
+    <div id="botonesPedidoLimpio">
+    <button onclick="volverAlPedido()">← Volver</button>
+    <button onclick="imprimirPedido()">🖨️ Imprimir / Guardar PDF</button>
+</div>
+</div>
+
+    <h2 id="totalCategoria">Total categoría: 0,00 €</h2>
+
+<h2 id="totalInventario">TOTAL INVENTARIO: 0,00 €</h2>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
