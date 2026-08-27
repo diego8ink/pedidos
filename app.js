@@ -275,3 +275,65 @@ function volverAlPedido() {
 function imprimirPedido() {
     window.print();
 }
+
+function exportarMateriales() {
+    const datosExportar = {};
+
+    Object.entries(inventario).forEach(([categoria, materiales]) => {
+        datosExportar[categoria] = materiales.map(item => ({
+            material: item.material
+        }));
+    });
+
+    const archivo = new Blob(
+        [JSON.stringify(datosExportar, null, 2)],
+        { type: "application/json" }
+    );
+
+    const enlace = document.createElement("a");
+    enlace.href = URL.createObjectURL(archivo);
+    enlace.download = "materiales_pedidos.json";
+
+    enlace.click();
+
+    URL.revokeObjectURL(enlace.href);
+}
+
+function importarMateriales(event) {
+    const archivo = event.target.files[0];
+
+    if (!archivo) return;
+
+    const lector = new FileReader();
+
+    lector.onload = function(e) {
+        try {
+            const datos = JSON.parse(e.target.result);
+
+            if (typeof datos !== "object" || datos === null) {
+                throw new Error("Formato no válido");
+            }
+
+            Object.entries(datos).forEach(([categoria, materiales]) => {
+    datos[categoria] = materiales.map(item => ({
+        material: item.material,
+        precio: 0,
+        cantidad: 0
+    }));
+});
+
+        inventario = datos;
+
+            localStorage.setItem("inventario", JSON.stringify(inventario));
+
+            alert("Materiales importados correctamente.");
+
+            location.reload();
+
+        } catch (error) {
+            alert("No se ha podido importar el archivo. Comprueba que sea un archivo de materiales válido.");
+        }
+    };
+
+    lector.readAsText(archivo);
+}

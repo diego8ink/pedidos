@@ -47,6 +47,9 @@
     <button onclick="añadirMaterial()">+ Añadir material</button>
     <button onclick="limpiarCantidades()">Limpiar cantidades</button>
     <button onclick="limpiarPedido()">Limpiar pedido</button>
+    <button onclick="exportarMateriales()">📤 Exportar materiales</button>
+    <button onclick="document.getElementById('archivoMateriales').click()">📥 Importar materiales</button>
+<input type="file" id="archivoMateriales" accept=".json" style="display: none;" onchange="importarMateriales(event)">
 </div>
 <button id="botonGenerar" onclick="generarPedido()">🧾 Generar pedido</button>
 
